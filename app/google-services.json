@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "17565001535",
+    "firebase_url": "https://applico-9faa6.firebaseio.com",
+    "project_id": "applico-9faa6",
+    "storage_bucket": "applico-9faa6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17565001535:android:341c0368bf2ac5e1",
+        "android_client_info": {
+          "package_name": "com.example.applico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17565001535-f29a7n25ib8hg62rkd65vra3bfajrsi2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.applico",
+            "certificate_hash": "dc006f744dc4d144fdf4b1e9b77324d4c89c352d"
+          }
+        },
+        {
+          "client_id": "17565001535-ksn4dv345u8cqg446naro53i98glqffc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT-1aY1d41fzh8uBJs5C2WiqeuA2WjxlY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17565001535-ksn4dv345u8cqg446naro53i98glqffc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
