@@ -28,10 +28,7 @@ Button order;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.allblock);
-        if(savedInstanceState!=null)
-        {
-            String x=savedInstanceState.getString("APPLE");
-        }
+
 
 
 Bundle bundle=getIntent().getExtras();
@@ -45,7 +42,7 @@ else if(x==R.id.imagebutton2){
     }
      else if(x==R.id.imageButton3)
     getproduct3();
-
+      //  findViewById(R.id.order).setVisibility(View.VISIBLE);
         search=findViewById(R.id.search);
         search.setOnQueryTextListener(this);
         listview=(ListView)findViewById(R.id.listview);
@@ -113,6 +110,7 @@ else if(x==R.id.imagebutton2){
     @Override
     public boolean onQueryTextChange(String newText) {
         String text=newText;
+
         adapter.filter(text);
         return false;
     }
@@ -159,12 +157,7 @@ else if(x==R.id.imagebutton2){
         food.add(new Food("Half Chicken",160.0d));
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putString("APPLE","apple");
 
-        super.onSaveInstanceState(savedInstanceState);
-    }
 }
 
 

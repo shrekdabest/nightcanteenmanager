@@ -120,7 +120,7 @@ android:background="#FFA07A"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
-            android:onClick="showinfo"
+
             android:background="#FFA07A"
             android:text="Last Info"
             android:textSize="18sp"
@@ -130,6 +130,26 @@ android:background="#FFA07A"
             app:layout_constraintStart_toEndOf="@+id/saveinfo"
             app:layout_constraintTop_toBottomOf="@+id/editblock"
             app:layout_constraintVertical_bias="0.392" />
+
+        <Button
+            android:layout_width="129dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="#cd5c5c"
+            android:text="Location"
+            android:enabled="false"
+            android:id="@+id/locai"
+android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.111"
+            app:layout_constraintStart_toEndOf="@+id/retrieve"
+            app:layout_constraintTop_toBottomOf="@+id/editblock"
+            app:layout_constraintVertical_bias="1.0" />
     </android.support.constraint.ConstraintLayout>
     <TextView
         android:layout_width="match_parent"

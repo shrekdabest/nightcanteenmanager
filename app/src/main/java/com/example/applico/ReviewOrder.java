@@ -1,6 +1,7 @@
 package com.example.applico;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -43,7 +44,7 @@ public class ReviewOrder extends AppCompatActivity {
     TextView savename;
     TextView savemobile;
     TextView saveblock;
-int j=0;
+
 int k=0;
     EditText editname;
     TextView editmobile;
@@ -63,6 +64,13 @@ int k=0;
         id=todecide.getInt("chooser",0);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_order);
+        findViewById(R.id.locai).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent inti=new Intent(ReviewOrder.this,LocationOfDriver.class);
+                startActivity(inti);
+            }
+        });
      //   currentDateTimeString = DateFormat.getDateTimeInstance()
             //    .format(new Date());
         animesss=new AlphaAnimation(1.0f,0.5f);
@@ -84,8 +92,7 @@ editinfo.setVisibility(View.GONE);
         total();
         SharedPreferences sp= getSharedPreferences("mobileno",Context.MODE_PRIVATE);
       //  editmobile.setText(sp.getString("phonenumber","lateraligator"));
-        mobilenumberr=sp.getString("phonenumber","" +
-                "");
+        mobilenumberr=sp.getString("phonenumber","");
         editmobile.setText(mobilenumberr);
         SharedPreferences nc=getSharedPreferences("userinfo", Context.MODE_PRIVATE);
         editname.setText(nc.getString("username",""));
@@ -98,17 +105,8 @@ editinfo.setVisibility(View.GONE);
             public void onClick(View view) {
                 currentDateTimeString = DateFormat.getDateTimeInstance()
                         .format(new Date());
-                i++;
-                if(i % 2 == 0) {
-                    ctimer.cancel();
-                    ctimer=null;
-                    Toast.makeText(getApplicationContext(),"Your order is cancelled ",Toast.LENGTH_SHORT).show();
+                //i++;
 
-                    ordernow.setBackgroundColor(Color.parseColor("#b6d161"));
-                    ordernow.setTextColor(Color.parseColor("#000000"));
-                    ordernow.setText("ORDER NOW!!");
-
-                }
                 view.setAnimation(animesss);
                 if(editname.getText().toString().isEmpty())
                 {
@@ -126,11 +124,9 @@ editinfo.setVisibility(View.GONE);
                 realblock=editblock.getText().toString();
                 boolean a =ordernow.getText().toString().toLowerCase().contains("now");
              //  Toast.makeText(getApplicationContext(),""+a,Toast.LENGTH_SHORT).show();
-                if(a){
-                    k=1;
-                    }
+                i++;
 if(i % 2 == 1){
-  ctimer =  new CountDownTimer(30000, 1000) {
+  ctimer =  new CountDownTimer(15000, 1000) {
 
                     public void onTick(long millisUntilFinished) {
                        ordernow.setText("You can cancel order within "+Long.toString(millisUntilFinished/1000)+" seconds");
@@ -140,19 +136,33 @@ if(i % 2 == 1){
                     }
 
                     public void onFinish() {
-j=5;
-Toast.makeText(getApplicationContext(),"Your order is successfully placed",Toast.LENGTH_SHORT).show();
+                        sendordertofirebase();
+                        Toast.makeText(getApplicationContext(),"Your order is successfully placed",Toast.LENGTH_SHORT).show();
+                        ordernow.setBackgroundColor(Color.parseColor("#b6d161"));
+                        ordernow.setTextColor(Color.parseColor("#000000"));
+                        ordernow.setText("ORDER NOW!!");  i = 0;
+//Toast.makeText(getApplicationContext(),"Your order is successfully placed",Toast.LENGTH_SHORT).show();
                     }
 
                 }.start();
 }
+                if(i % 2 == 0) {
+                    ctimer.cancel();
+                    ctimer=null;
+                    Toast.makeText(getApplicationContext(),"Your order is cancelled ",Toast.LENGTH_SHORT).show();
 
-                if(i % 2 == 1)
+                    ordernow.setBackgroundColor(Color.parseColor("#b6d161"));
+                    ordernow.setTextColor(Color.parseColor("#000000"));
+                    ordernow.setText("ORDER NOW!!");
+
+                }
+             /*   if(i % 2 == 1)
                 {   Handler handler=new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         sendordertofirebase();
+                        Toast.makeText(getApplicationContext(),"Your order is successfully placed",Toast.LENGTH_SHORT).show();
                         ordernow.setBackgroundColor(Color.parseColor("#b6d161"));
                         ordernow.setTextColor(Color.parseColor("#000000"));
                         ordernow.setText("ORDER NOW!!");  i = 0;
@@ -161,7 +171,7 @@ Toast.makeText(getApplicationContext(),"Your order is successfully placed",Toast
                 },30000);
 
 
-            }
+            }*/
 
            }
 
@@ -179,6 +189,20 @@ Toast.makeText(getApplicationContext(),"Your order is successfully placed",Toast
         saveinfo.setBackgroundColor(Color.parseColor("#87CEFA"));
         saveinfo.setText("Saved");
         Toast.makeText(this,"Your details are successfully stored",Toast.LENGTH_SHORT).show();
+        new CountDownTimer(2000,1000)
+        {
+
+            @Override
+            public void onTick(long l) {
+
+            }
+
+            @Override
+            public void onFinish() {
+saveinfo.setBackgroundColor(Color.parseColor("#FFA07A"));
+saveinfo.setText("Save Info");
+            }
+        }.start();
     }
     /*public void showinfo(View v)
     { SharedPreferences nc=getSharedPreferences("userinfo", Context.MODE_PRIVATE);
@@ -251,7 +275,9 @@ menu=phonenumber.child("ORDER");
                     DatabaseReference reffood=menu.child(foodrevieworder.get(k).name);
                     reffood.setValue(foodrevieworder.get(k).quantity);
                 }
-
+                findViewById(R.id.locai).setEnabled(true);
+findViewById(R.id.locai).startAnimation(animesss);
+findViewById(R.id.locai).setBackgroundColor(Color.parseColor("#39ff14"));
 
     }
 

@@ -34,7 +34,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/B:/android%20studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_verified_user_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/B:/android%20studio/plugins/android/lib/android.jar!/images/material_design_icons/maps/ic_my_location_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -55,7 +55,7 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_action_verifyy" />
+                                      <entry key="outputName" value="ic_action_verifyyasdasd" />
                                       <entry key="themeColor" value="ffffff" />
                                     </map>
                                   </option>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class ListViewAdapter extends BaseAdapter {
     ArrayList<Food> listfood;
     ArrayList<Food> searchfood;
     Context context;
+
     ListViewAdapter(Context c,ArrayList<Food> food)
     {
         this.context=c;
@@ -42,7 +44,8 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent)
-    {View row;
+    {
+        View row;
         final ViewClassHolder viewClassHolder;
         if(convertView==null)
         {
@@ -54,6 +57,7 @@ public class ListViewAdapter extends BaseAdapter {
             viewClassHolder.plus=row.findViewById(R.id.plus);
             viewClassHolder.minus=row.findViewById(R.id.minus);
             viewClassHolder.quantity=row.findViewById(R.id.quantity);
+
             viewClassHolder.yourcost=row.findViewById(R.id.yourcost);
             row.setTag(viewClassHolder);
         }
@@ -118,6 +122,7 @@ public class ListViewAdapter extends BaseAdapter {
                 if(wp.getname().toLowerCase(Locale.getDefault()).contains(text))
                 {
                     listfood.add(wp);
+
                 }
             }
         }

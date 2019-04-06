@@ -18,16 +18,16 @@
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="83dp"
-
+android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+       >
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             android:gravity="center"
             android:text="Choose Block"
             android:textColor="#ffffff"
@@ -43,6 +43,7 @@
         android:id="@+id/listview2"
         android:layout_width="match_parent"
         android:layout_height="519dp"
+        android:orientation="vertical"
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

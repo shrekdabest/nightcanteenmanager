@@ -20,11 +20,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
+//debabrat
+//suraj suthar
+//sandeep
+//shashikantha
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth mauth;
     AlphaAnimation alpha;
@@ -47,6 +51,7 @@ setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 getSupportActionBar().setTitle("  Nocturnal Eats");
 getSupportActionBar().setLogo(R.mipmap.logos_round);
+//takemetomaps();
    }
 
 
@@ -181,12 +186,13 @@ for(int z=0;z<3;z++)
                 startActivity(intent);
                 finish();
                 break;
+
             default:
                 break;
         }
         return true;
     }
-/* @Override
+ @Override
     protected void onStart() {
         FirebaseUser currentuser=mauth.getCurrentUser();
 
@@ -201,7 +207,7 @@ for(int z=0;z<3;z++)
 
 
         super.onStart();
-    }*/
+    }
     private void getLocation() {
         if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission
@@ -243,7 +249,7 @@ for(int z=0;z<3;z++)
 
             }else{
 
-                Toast.makeText(this,"Unable to Trace your location",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Unable to trace your location",Toast.LENGTH_SHORT).show();
 
             }
         }
@@ -269,10 +275,11 @@ for(int z=0;z<3;z++)
         alert.show();
     }
     public void takemetomaps()
-    {
+    {ImageView image = new ImageView(this);
+        image.setImageResource(R.drawable.ic_action_verifyyasdasd);
        AlertDialog.Builder buil=new AlertDialog.Builder(this,R.style.MyDialogTheme);
         buil.setTitle("We can't access your location");
-                buil.setMessage("It seems that we are unable to detect your location.we need you to press on the 'your location' button in google maps to effectively pinpoint your location");
+                buil.setMessage("It seems that we are unable to detect your location.we need you to press on the 'my location' button in google maps and return back to this app");
                 buil.setCancelable(true);
                 buil.setPositiveButton("Take me there", new DialogInterface.OnClickListener() {
                     @Override
@@ -288,8 +295,9 @@ for(int z=0;z<3;z++)
                 dialogInterface.cancel();
             }
         });
-         AlertDialog alert=buil.create();
-        alert.show();
+    buil.setView(image);
+         AlertDialog alerttoo=buil.create();
+        alerttoo.show();
     }
 
 }

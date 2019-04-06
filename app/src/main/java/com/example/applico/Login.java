@@ -2,6 +2,7 @@ package com.example.applico;
 
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -41,10 +42,18 @@ public class Login extends AppCompatActivity {
     String verificationcode;
 AlphaAnimation gulpha;
     String phoneno;
+    ProgressDialog x,y;
+    int you=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+      /* ProgressDialog x=new ProgressDialog(getApplicationContext());
+       x.setMessage("Loading ....");
+       x.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+       x.setCancelable(false);
+       x.show();*/
+     // otp.setEnabled(false);
         gulpha=new AlphaAnimation(1.0f,0.0f);
 TextView heading=findViewById(R.id.heading);
 Typeface myfont=Typeface.createFromAsset(this.getAssets(),"fonts/MotionPicture_PersonalUseOnly.ttf");
@@ -60,6 +69,7 @@ heading.setTypeface(myfont);
             @Override
             public void onClick(View v) {
                 v.setAnimation(gulpha);
+               // otp.setEnabled(true);
                 phoneno=phone.getText().toString();
                 if (phoneno.isEmpty()||phoneno.length()<10)
                 {
@@ -68,19 +78,35 @@ heading.setTypeface(myfont);
                     return;
                 }
                // progressBar.setVisibility(View.VISIBLE);
+                if(phoneno.length()==10)
 otp.requestFocus();
                 sendotp(phoneno);
+                 x=new ProgressDialog(Login.this);
+                x.setTitle("Sending OTP");
+                x.setMessage("Please wait...");
+                x.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                x.setCancelable(false);
+                x.show();
             }
         });
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 v.setAnimation(gulpha);
+                you=1;
                 String x=otp.getText().toString();
                 if(x.isEmpty()||x.length()<6)
                 {  otp.setError("Enter a valid otp");
                     otp.requestFocus();
                     return;}
+
+                y=new ProgressDialog(Login.this);
+                y.setTitle("Trying to authenticate");
+                y.setMessage("Please wait...");
+                y.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                y.setCancelable(false);
+                y.show();
                 verifycode(x);
             }
         });
@@ -97,11 +123,13 @@ otp.requestFocus();
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
 //progressBar.setVisibility(View.GONE);
             signinwithauthcredential(phoneAuthCredential);
+            x.dismiss();
         }
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
            /// progressBar.setVisibility(View.GONE);
+            x.dismiss();
             Toast.makeText(Login.this,"Verification failed . Make sure you have an active internet connection",Toast.LENGTH_LONG).show();
         }
 
@@ -109,6 +137,7 @@ otp.requestFocus();
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
             verificationcode=s;
+            x.dismiss();
            // progressBar.setVisibility(View.GONE);
         }
 
@@ -131,6 +160,8 @@ otp.requestFocus();
                     SharedPreferences.Editor edit=sp.edit();
                     edit.putString("phonenumber",phoneno);
                     edit.apply();
+                    if(you==1)
+                    y.dismiss();
                     Intent intent =new Intent(Login.this,MainActivity.class);
 
                     startActivity(intent);
@@ -140,10 +171,10 @@ otp.requestFocus();
 
                     //verification unsuccessful.. display an error message
 
-                    String message = "Somthing is wrong, we will fix it soon...";
+                    String message = "Something went wrong";
 
                     if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                        message = "Invalid code entered...";
+                        message = "Invalid code entered";
                     }
                 }
             }
